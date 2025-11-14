@@ -1,9 +1,5 @@
-make &&
-make zstdmt &&
-make -C contrib/pzstd &&
+cd build/meson
 
-prepare_install &&
+OPTS+=" -Dbin_contrib=true -Dbin_contrib=true"
 
-make PREFIX=/usr install &&
-ln -f /usr/bin/zstd /usr/bin/zstdmt &&
-install -Dm755 contrib/pzstd/pzstd /usr/bin/pzstd
+default_meson_build
