@@ -1,15 +1,15 @@
-          MODULE=libpcap
-         VERSION=1.10.6
-          SOURCE=$MODULE-$VERSION.tar.gz
-         SOURCE2=libpcap-1.7.4-enable_bluetooth-1.patch
-      SOURCE_URL=http://www.tcpdump.org/release
-     SOURCE2_URL=$PATCH_URL
-      SOURCE_VFY=sha256:872dd11337fe1ab02ad9d4fee047c9da244d695c6ddf34e2ebb733efd4ed8aa9
-     SOURCE2_VFY=sha256:5000de2daec00fb31ccc949f7e265bfb621635c8e2daf9bb17770d75997195b5
-        WEB_SITE=http://www.tcpdump.org/
-         ENTERED=20011004
-         UPDATED=20260106
-           SHORT="A capturing library used by tcpdump"
+     MODULE=libpcap
+    VERSION=1.11.0
+     SOURCE=$MODULE-$VERSION.tar.gz
+    SOURCE2=libpcap-1.7.4-enable_bluetooth-1.patch
+ SOURCE_URL=http://www.tcpdump.org/release
+SOURCE2_URL=$PATCH_URL
+ SOURCE_VFY=sha256:596389bc8560ea027dff9db8aaf6c173d992366d9aef4baf5d7c6d180b4d49ad
+SOURCE2_VFY=sha256:5000de2daec00fb31ccc949f7e265bfb621635c8e2daf9bb17770d75997195b5
+   WEB_SITE=http://www.tcpdump.org/
+    ENTERED=20011004
+    UPDATED=20260918
+      SHORT="A capturing library used by tcpdump"
 
 cat << EOF
 This is a handy little library which provides a packet filtering mechanism based

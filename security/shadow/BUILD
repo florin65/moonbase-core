@@ -14,6 +14,14 @@ set_login_opts() {
 # Keep shadow from installing it's own pam.d files
 sedit '/^SUBDIRS/ n; s/etc//' Makefile.in Makefile.am &&
 
+# work around a chicken-and-egg problem which should only
+# happen when building an iso
+
+if ! lvu installed systemd > /dev/null
+then
+  OPTS+=' --disable-logind '
+fi &&
+
 ./configure --prefix=/usr \
             --bindir=/usr/bin \
             --sbindir=/usr/bin \
@@ -38,8 +46,8 @@ make DESTDIR=$SOURCE_DIRECTORY/__shadowdest/ -C man install &&
 # remove the installed chfn, chsh, login, nologin, su, vigr and vipw apps
 # util-linux install these apps in Lunar
 #cp $SOURCE_DIRECTORY/__shadowdest/usr/bin/login /tmp/ &&
-rm $SOURCE_DIRECTORY/__shadowdest/usr/bin/{login,chfn,chsh,nologin} &&
-rm $SOURCE_DIRECTORY/__shadowdest/usr/sbin/{vigr,vipw,logoutd} &&
+rm -f $SOURCE_DIRECTORY/__shadowdest/usr/bin/{login,chfn,chsh,nologin} &&
+rm -f $SOURCE_DIRECTORY/__shadowdest/usr/sbin/{vigr,vipw,logoutd} &&
 mv $SOURCE_DIRECTORY/__shadowdest/usr/bin/{newgrp,sg} &&
 mv -f $SOURCE_DIRECTORY/__shadowdest/usr/{sbin/*,bin/} &&
 rm -rf $SOURCE_DIRECTORY/__shadowdest/usr/sbin &&
